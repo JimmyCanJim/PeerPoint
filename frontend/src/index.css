@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  @keyframes liquid-drift {
+    0% { 
+      transform: translate(0, 0) rotate(0deg) scale(1); 
+    }
+    33% { 
+      transform: translate(10vw, 5vh) rotate(10deg) scale(1.1); 
+    }
+    66% { 
+      transform: translate(-5vw, 15vh) rotate(-10deg) scale(0.95); 
+    }
+    100% { 
+      transform: translate(0, 0) rotate(0deg) scale(1); 
+    }
+  }
+
+  .animate-liquid {
+    /* 15 seconds is the 'sweet spot'—visible but calm */
+    animation: liquid-drift 15s infinite ease-in-out;
+  }
+
+  @keyframes scan {
+  from { transform: translateY(-100vh); }
+  to { transform: translateY(100vh); }
+    }
+}
+
+
+
+:root {
+  --color-main : #b3cde0;
+  --color-accent :  #468cdb;
+
+  --color-ink-main : #212529;
+  --color-ink-secondary : #9e9ed8;
+
+  --color-card-border : #0a1116;
+  --color-card-bg : #596c7415;
+  --color-card-shadow: #03396c;
+
+  --color-btn-border : #bfdbf7;
+  --color-btn-bg: #69c0e92f;
+
+  --color-input-bg : #a6abaf;
+  --color-input-placeholder : #adb5bd;
+  --color-input-border : #323436;
+}
+
+/* GLOBAL DEFAULTS */
+body {
+  background-color: transparent;
+}
+
+h1, h2, h3 {
+  color: var(--color-ink);
+  font-weight: 900;
+}
+
+.blueprint-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Targets all inputs */
+input::placeholder {
+  color: #643c00; 
+  opacity: 1;   
+}
+
+.ledger-input-dark {
+  background-color: var(--color-folder) !important; 
+  border: 1px solid rgba(45, 36, 36, 0.4) !important; 
+  color: var(--color-ink);
+  outline: none !important;
+  transition: border-color 0.4s ease;
+}
+
+.ledger-input-dark:focus {
+  border-color: var(--color-leather) !important;
+  box-shadow: none !important;
+}
+
+.ledger-input-dark::placeholder {
+  color: var(--color-ink);
+  opacity: 0.3;
+}
+

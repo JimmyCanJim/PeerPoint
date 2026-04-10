@@ -1,0 +1,53 @@
+.smoke-container {
+    position: fixed;
+    inset: 0;
+    z-index: 0; /* Layered at the very back */
+    overflow: hidden;
+    /* Dark navy blue base, just like we discussed */
+    background-color: #0a192f;
+    width: 100%;
+    height: 100%;
+}
+
+.smoke-particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0; /* Starts invisible */
+    
+    /* Core blue-themed smoke gradient:
+       Starts with a translucent light blue, then a mid blue, 
+       and fades to complete transparency */
+    background: radial-gradient(circle, 
+        #184e7723 10%,
+        #1e6091 20%, 
+        #184e7723 50%,
+        #03030379 20%
+    );
+    
+    /* Critically important for the smoke effect */
+    filter: blur(40px); /* Softens all the edges into one cloud */
+    
+    /* Animation name, duration, and infinite loop are set here.
+       The specific duration and delay are set randomly in JS */
+    animation: smoke-float linear infinite;
+}
+
+@keyframes smoke-float {
+    0% {
+        transform: translateY(10%) translateX(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.15; /* Quickly fade in to partial opacity */
+    }
+    50% {
+        /* Drift up and slightly sideways while growing */
+        transform: translateY(-40%) translateX(20px) scale(1.5);
+        opacity: 0.2; /* Maximum visibility */
+    }
+    100% {
+        /* Continue up, grow, and fade out completely */
+        transform: translateY(-90%) translateX(40px) scale(2);
+        opacity: 0;
+    }
+}
